@@ -1,12 +1,13 @@
 {
-  "name": "my-package",
+  "name": "video-downloader",
+  "version": "1.0.0",
+  "private": true,
+  "license": "UNLICENSED",
   "scripts": {
-    "start": "node worker/download.js",
-    "build": "babel src -d lib",
-    "test": "jest"
+    "build": "echo 'No build step required'",
+    "start": "wrangler dev"
   },
-  "dependencies": {
-    "express": "^4.18.2",
-    "yt-dlp-wrap": "^2.3.2"
+  "devDependencies": {
+    "wrangler": "^3.52.1"
   }
 }
