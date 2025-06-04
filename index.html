@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Private Video Downloader</title>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
+    <div id="warning" class="mb-4 text-red-600">
+      For personal use only. Enter code to access.
+    </div>
+    <div id="unlock" class="mb-4">
+      <input
+        type="text"
+        id="code"
+        placeholder="Enter access code"
+        class="w-full p-2 border rounded"
+      />
+      <button
+        onclick="unlock()"
+        class="mt-2 w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+      >
+        Unlock
+      </button>
+    </div>
+    <div id="downloader" class="hidden">
+      <input
+        type="text"
+        id="videoUrl"
+        placeholder="Enter video URL (e.g., YouTube)"
+        class="w-full p-2 border rounded mb-2"
+      />
+      <button
+        onclick="download()"
+        class="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600"
+      >
+        Download
+      </button>
+      <input
+        type="text"
+        id="searchQuery"
+        placeholder="Search the web"
+        class="w-full p-2 border rounded mt-4 mb-2"
+      />
+      <button
+        onclick="search()"
+        class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+      >
+        Search
+      </button>
+      <div id="results" class="mt-4"></div>
+    </div>
+  </div>
+  <script>
+    const SECRET_CODE = "mysecret123"; // Change this
+    const TOKEN = "abc123xyz"; // Change this
+    function unlock() {
+      if (document.getElementById("code").value === SECRET_CODE) {
+        document.getElementById("warning").classList.add("hidden");
+        document.getElementById("unlock").classList.add("hidden");
+        document.getElementById("downloader").classList.remove("hidden");
+      } else {
+        alert("Invalid code");
+      }
+    }
+    async function download() {
+      const url = document.getElementById("videoUrl").value;
+      const response = await fetch(`/download?url=${encodeURIComponent(url)}`, {
+        headers: { "X-Access-Token": TOKEN },
+      });
+      if (response.ok) {
+        window.location.href = await response.text();
+      } else {
+        alert("Download failed");
+      }
+    }
+    async function search() {
+      const query = document.getElementById("searchQuery").value;
+      const response = await fetch(`/search?q=${encodeURIComponent(query)}`, {
+        headers: { "X-Access-Token": TOKEN },
+      });
+      const results = await response.json();
+      document.getElementById("results").innerHTML = results.items
+        .map(
+          (item) =>
+            `<p class="text-blue-600"><a href="${item.link}" target="_blank">${item.title}</a></p>`
+        )
+        .join("");
+    }
+  </script>
+</body>
+</html>
