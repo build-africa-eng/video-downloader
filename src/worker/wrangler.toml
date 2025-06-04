@@ -1,0 +1,6 @@
+name = "video-downloader"
+compatibility_date = "2025-06-05"
+[[d1_databases]]
+binding = "DB"
+database_name = "video-downloader"
+database_id = "ee4b86d3-c116-4dcd-a9c3-c4ee0b7fa5b2"
