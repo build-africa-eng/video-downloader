@@ -1,9 +1,9 @@
 {
-  "name": "video-downloader",
-  "version": "1.0.0",
+  "name": "my-package",
   "scripts": {
-    "build": "vite build",
-    "start": "node worker/download.js"
+    "start": "node worker/download.js",
+    "build": "babel src -d lib",
+    "test": "jest"
   },
   "dependencies": {
     "express": "^4.18.2",
