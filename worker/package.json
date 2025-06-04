@@ -1,0 +1,12 @@
+{
+  "name": "video-downloader",
+  "version": "1.0.0",
+  "main": "download.js",
+  "scripts": {
+    "start": "node download.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "yt-dlp-wrap": "^2.3.2"
+  }
+}
