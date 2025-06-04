@@ -1,5 +1,5 @@
 name = "video-downloader"
-main = "src/index.ts"
+main = "worker/src/index.ts"
 compatibility_date = "2025-06-05"
 
 [[d1_databases]]
