@@ -1,13 +1,12 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  plugins: [react()],
-  base: '/',
+  plugins: [],
+  base: './', // Relative paths for static assets
   build: {
     outDir: 'dist',
   },
   css: {
-    postcss: './postcss.config.js',
+    postcss: './postcss.config.cjs',
   },
 });
